@@ -26,7 +26,8 @@ class GitAi < Formula
 
       # Option 1: Ollama (Free, Local)
       export AI_PROVIDER=ollama
-      ollama pull llama3.2
+      export CLOUD_AI_MODEL=gemma3:4b
+      ollama pull gemma3:4b
 
       # Option 2: Anthropic
       export AI_PROVIDER=anthropic
@@ -35,6 +36,9 @@ class GitAi < Formula
       # Option 3: OpenAI
       export AI_PROVIDER=openai
       export CLOUD_AI_API_KEY="your-api-key"
+
+      Or add jira.local.json to your project root:
+      {"cloud":{"provider":"ollama","model":"gemma3:4b"}}
 
       Usage:
         git-ai commit --dry-run  # Preview
