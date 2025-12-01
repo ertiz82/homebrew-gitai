@@ -2,7 +2,7 @@ class GitAi < Formula
   desc "AI-powered Git commit grouping and message generation"
   homepage "https://github.com/ertiz82/git-ai"
   url "https://github.com/ertiz82/git-ai/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "5bc14966b72114a0e01cae59e695bb4bd88f4632807dd842e8cc175efb8cdec8"
+  sha256 "6c2a84b6549bc14ba42a28c15a7ba84a3305e168847f7a0cac39250b35e3be24"
   license "MIT"
 
   depends_on "node"
@@ -22,11 +22,25 @@ class GitAi < Formula
 
   def caveats
     <<~EOS
-      To use git-ai, you need to set your API key:
-        export CLOUD_AI_API_KEY="your-api-key"
+      Configure your AI provider:
 
-      Or create a jira.local.json in your project root.
-      See: #{libexec}/jira.local.example.json
+      # Option 1: Ollama (Free, Local)
+      export AI_PROVIDER=ollama
+      ollama pull llama3.2
+
+      # Option 2: Anthropic
+      export AI_PROVIDER=anthropic
+      export CLOUD_AI_API_KEY="your-api-key"
+
+      # Option 3: OpenAI
+      export AI_PROVIDER=openai
+      export CLOUD_AI_API_KEY="your-api-key"
+
+      Usage:
+        git-ai commit --dry-run  # Preview
+        git-ai commit            # Execute
+
+      Docs: https://github.com/ertiz82/git-ai
     EOS
   end
 
