@@ -2,7 +2,7 @@ class GitAi < Formula
   desc "AI-powered Git commit grouping and message generation"
   homepage "https://github.com/ertiz82/git-ai"
   url "https://github.com/ertiz82/git-ai/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "9b2894180af84209cb97804fedf0cf4882fac8cca2803f6ba613d4199b6511bc"
+  sha256 "aa3aa3e78778697065e86596674cee0da0d994324d3bd903224fa54191f0d10e"
   license "MIT"
 
   depends_on "node"
