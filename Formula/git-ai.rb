@@ -1,23 +1,25 @@
 class GitAi < Formula
   desc "AI-powered Git commit grouping and message generation"
   homepage "https://github.com/ertiz82/git-ai"
-  url "https://github.com/ertiz82/git-ai/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "6a1ad0a41e2df5e760ec062d0dc0d0e1dcfc9b91bfa0ad3929a518864fc90bf8"
+  url "https://github.com/ertiz82/git-ai/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "97fb5beee69d5a4a2cdb9299fa86c5e0e1bbd91157d9604986ff81b24d5ffdca"
   license "MIT"
 
   depends_on "node"
 
   def install
+    # Node backend
     cd "node-backend" do
       system "npm", "install", "--production"
       libexec.install Dir["*"]
     end
 
-    # Create executable wrapper
+    # Executable wrapper
     (bin/"git-ai").write <<~EOS
       #!/bin/bash
       exec "#{Formula["node"].opt_bin}/node" "#{libexec}/bin/cli.js" "$@"
     EOS
+    chmod 0755, bin/"git-ai"
   end
 
   def caveats
@@ -49,6 +51,9 @@ class GitAi < Formula
   end
 
   test do
-    assert_match "git-ai", shell_output("#{bin}/git-ai version")
+    # Basic version test
+    output = shell_output("#{bin}/git-ai version")
+    assert_match "git-ai", output
   end
 end
+
