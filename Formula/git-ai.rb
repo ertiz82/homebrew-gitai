@@ -1,8 +1,8 @@
 class GitAi < Formula
   desc "AI-powered Git commit grouping and message generation"
   homepage "https://github.com/ertiz82/git-ai"
-  url "https://github.com/ertiz82/git-ai/archive/refs/tags/v1.0.2.tar.gz"
-  sha256 "82f9a2268c090efb6b6ecc9ae37ba9662d3ca987a730e12b59c9526053d459f4"
+  url "https://github.com/ertiz82/git-ai/archive/refs/tags/v1.0.3.tar.gz"
+  sha256 "fdd828e2767d66bdb71753dc7aaa01e2763c17d30d42803653e50383b29f88b0"
   license "MIT"
 
   depends_on "node"
@@ -24,27 +24,17 @@ class GitAi < Formula
 
   def caveats
     <<~EOS
-      Configure your AI provider:
+      Quick Start:
+        cd your-project
+        git-ai init              # Interactive setup (recommended)
+        git-ai commit --dry-run  # Preview commits
+        git-ai commit            # Execute commits
 
-      # Option 1: Ollama (Free, Local)
-      export AI_PROVIDER=ollama
-      export CLOUD_AI_MODEL=gemma3:4b
-      ollama pull gemma3:4b
-
-      # Option 2: Anthropic
-      export AI_PROVIDER=anthropic
-      export CLOUD_AI_API_KEY="your-api-key"
-
-      # Option 3: OpenAI
-      export AI_PROVIDER=openai
-      export CLOUD_AI_API_KEY="your-api-key"
-
-      Or add jira.local.json to your project root:
-      {"cloud":{"provider":"ollama","model":"gemma3:4b"}}
-
-      Usage:
-        git-ai commit --dry-run  # Preview
-        git-ai commit            # Execute
+      Supported AI Providers:
+        - Ollama (Free, Local)
+        - Google Gemini
+        - OpenAI (GPT)
+        - Anthropic (Claude)
 
       Docs: https://github.com/ertiz82/git-ai
     EOS
